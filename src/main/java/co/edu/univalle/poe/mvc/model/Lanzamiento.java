@@ -1,22 +1,23 @@
 package co.edu.univalle.poe.mvc.model;
 
 public class Lanzamiento {
-    private int ValorDado1;
-    private int ValorDado2;
+    private int valorDado1;
+    private int valorDado2;
 
-    public Lanzamiento(int valor ValorDado1, int Valordado2){
-        this.ValorDado1 = ValorDado1;
-        this.ValorDado2 = Valordado2;
+    public Lanzamiento(int valorDado1, int valorDado2) {
+        this.valorDado1 = valorDado1;
+        this.valorDado2 = valorDado2;
     }
 
-    public int CalculaSuma(){
-        return ValorDado1 + ValorDado2
-    }
-    public int getValorDado1(){
-     return ValorDado1;
+    public int calculaSuma() {
+        return valorDado1 + valorDado2;
     }
 
-    public int getValorDado2(){
-        return ValorDado2;
+    public int getValorDado1() {
+        return valorDado1;
+    }
+
+    public int getValorDado2() {
+        return valorDado2;
     }
 }

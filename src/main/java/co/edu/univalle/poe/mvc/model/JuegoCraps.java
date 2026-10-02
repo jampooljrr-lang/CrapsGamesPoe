@@ -6,67 +6,68 @@ public class JuegoCraps {
     private EstadoPartida estadoPartida;
     private int punto;
 
-    public JuegoCraps(){
+    public JuegoCraps() {
         dado1 = new Dado();
         dado2 = new Dado();
-
         iniciarPartida();
     }
 
-    public void iniciarPartida(){
+    public void iniciarPartida() {
         punto = 0;
         estadoPartida = EstadoPartida.EN_CURSO;
     }
 
-    public Lanzamiento lanzarDados(){
-        int valordado1 =  dado1.lanzar();
-        int valordado2 =  dado2.lanzar();
+    public Lanzamiento lanzarDados() {
+        int valorDado1 = dado1.lanzar();
+        int valorDado2 = dado2.lanzar();
 
-        Lanzamiento lanzamiento = new Lanzamiento(valordado1, valordado2);
-        aplicarReglas(lanzamiento.calcularsuma());
+        Lanzamiento lanzamiento = new Lanzamiento(valorDado1, valorDado2);
+        aplicarReglas(lanzamiento.calculaSuma()); // Corregido el nombre del método
         return lanzamiento;
     }
 
-    private void aplicarReglas(int suma){
-        if(!siPuntoEstablecido){
+    private void aplicarReglas(int suma) {
+        // Se llama al método con paréntesis y camelCase
+        if (!hayPuntoEstablecido()) {
             evaluarPrimerLanzamiento(suma);
-
-        }else{
+        } else {
             evaluarLanzamientoPosterior(suma);
-
         }
     }
-    private void evaluarPrimerLanzamiento(int suma){
-        if(suma ==7 || suma == 11 ){
+
+    private void evaluarPrimerLanzamiento(int suma) {
+        if (suma == 7 || suma == 11) {
             estadoPartida = EstadoPartida.GANADA;
-        }else{
-            if(suma ==2 || suma == 3 || suma == 12){
+        } else {
+            if (suma == 2 || suma == 3 || suma == 12) {
                 estadoPartida = EstadoPartida.PERDIDA;
-            }else{
-                punto = suma;
+            } else {
+                punto = suma; // Se establece el punto
             }
         }
     }
 
-    private void evaluarLanzamientoPosterior(int suma){
-        if(suma == punto){
-            estadoPartida = EstadoPartida.GANADA
-        }else {
-            if(suma == 7){
+    private void evaluarLanzamientoPosterior(int suma) {
+        if (suma == punto) {
+            estadoPartida = EstadoPartida.GANADA;
+        } else {
+            if (suma == 7) {
                 estadoPartida = EstadoPartida.PERDIDA;
             }
         }
     }
 
-    public boolean HayPuntoEstablecido(){
+    public boolean hayPuntoEstablecido() {
         return punto != 0;
     }
-    public boolean puedelanzar(){
+
+    public boolean puedeLanzar() {
         return estadoPartida == EstadoPartida.EN_CURSO;
     }
 
-    public boolean partidaterminada(){
-        return estadoPartida == EstadoPartida.GANADA || EstadoPartida.PERDIDA;
+    public boolean partidaTerminada() {
+        // Corregida la condición lógica
+        return estadoPartida == EstadoPartida.GANADA || estadoPartida == EstadoPartida.PERDIDA;
     }
 
     public EstadoPartida getEstadoPartida() {
